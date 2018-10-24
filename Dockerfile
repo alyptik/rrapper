@@ -15,7 +15,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # get necessary CrashSimulator repos
 RUN git clone -b spin-off https://github.com/pkmoore/rr
-RUN git clone https://github.com/pkmoore/rrapper
+RUN git clone -b close_mutator https://github.com/alyptik/rrapper
 
 # create a new nonroot user
 RUN useradd crashsim -m
@@ -35,7 +35,7 @@ RUN mkdir obj && cd obj && cmake .. && make -j8 && \
     make install
 
 ########################
-# Installing rrapper 
+# Installing rrapper
 ########################
 
 WORKDIR rrapper/
