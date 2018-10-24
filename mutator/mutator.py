@@ -8,6 +8,35 @@ class NullMutator:
     def mutate_trace(self, trace):
         pass
 
+class CloseMutator(NullMutator):
+    """
+    <Purpose>
+      Implementation of a mutator that alters close calls
+      by invalidating the file descriptor by changing it to
+      -1.
+    """
+
+    def __init__(self, fd):
+        """
+        <Purpose>
+          Initialize the mutator object with the original
+          file descriptor
+        """
+        self.fd = fd
+
+    def mutate_trace(self, trace):
+        with open(trace, 'r') as f:
+            lines = f.readlines()
+        for idx, line in enumerate(lines):
+            if self.match_line(line):
+                line[idx] = self.mutate_line(line)
+
+    def match_line(self, line):
+        return 'close' in line and self.fd in line
+
+
+    def mutate_line(self, line):
+        return line.replace('(' + self.fd + ')', '(-1)', 1)
 
 class Stat64FiletypeMutator:
     def __init__(self, filename, filetype):
