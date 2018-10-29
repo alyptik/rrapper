@@ -16,8 +16,10 @@ RUN apt-get -q -y install \
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # get necessary CrashSimulator repos
-RUN git clone -b spin-off https://github.com/pkmoore/rr
-RUN git clone https://github.com/pkmoore/rrapper rr/rrapper
+# RUN git clone -b spin-off https://github.com/pkmoore/rr
+# RUN git clone https://github.com/pkmoore/rrapper rr/rrapper
+RUN git clone -b clean_libstrace https://github.com/alyptik/rr
+RUN git clone -b close_mutator https://github.com/alyptik/rrapper rr/rrapper
 
 # create a new nonroot user
 RUN useradd crashsim -m
