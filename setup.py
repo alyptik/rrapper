@@ -44,8 +44,8 @@ setup(
         'tabulate',
     ],
     dependency_links=[
-        'git+ssh://git@github.com/pkmoore/syscallreplay/tarball/master#egg=syscallreplay-1.0.0',
-        'git+ssh://git@github.com/pkmoore/posix-omni-parser/tarball/master#egg=posix-omni-parser=1.0.0'
+        'git+https://github.com/pkmoore/syscallreplay/tarball/master#egg=syscallreplay-1.0.0',
+        'git+https://github.com/pkmoore/posix-omni-parser/tarball/master#egg=posix-omni-parser=1.0.0'
     ],
     ext_modules=[
         CPUID_EXTENSION
